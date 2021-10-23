@@ -1,5 +1,7 @@
 package service;
 
+import entity.Documento;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,26 +16,33 @@ import java.util.stream.Stream;
 public class LectorCsv {
 
 
-    public void leerCsv(File file, String codCiudad) throws IOException {
+    public Documento leerCsv(File file, String codCiudad) throws IOException {
+        Documento doc = new Documento();
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line = br.readLine();
         StringTokenizer st;
-        List<String> campos = new ArrayList<>();
+        List<StringTokenizer> datosCiudad = new ArrayList<>();
+
+       /* List<String> campos = new ArrayList<>();
         List<Double> mediciones = new ArrayList<>();
-        double mediaMediciones;
+        double mediaDiaria;
         List<String> validacion = new ArrayList<>();
         List<LocalDate> fechas = new ArrayList<>();
         List<String> magnitudes = new ArrayList<>();
         List<String> estaciones = new ArrayList<>();
         int day;
         int month;
-        int year;
+        int year;*/
+
+
         while (line != null) {
             if (line.matches(".*;" + codCiudad + ".*")) {
                 st = new StringTokenizer(line, ";");
-                while (st.hasMoreTokens()) {
+                datosCiudad.add(st);
+                line = br.readLine();
+               /* while (st.hasMoreTokens()) {
                     campos.add(st.nextToken());
-                }
+
                 magnitudes.add(campos.get(3));
                 estaciones.add(campos.get(2));
                 year = Integer.parseInt(campos.get(5));
@@ -56,12 +65,15 @@ public class LectorCsv {
                     if (validacion.get(i) == "V") {
                         valorAcumulado = valorAcumulado + mediciones.get(i);
                     }
-                mediaMediciones = valorAcumulado / mediciones.size();
+                mediaDiaria = valorAcumulado / mediciones.size();
+
+            }*/
 
             }
-            line = br.readLine();
         }
-
+        doc.setDocumento(datosCiudad);
+        return doc;
+    }
 
       /* Path path = Paths.get(file.getPath());
         try (Stream<String> lines = Files.lines(path)) {
@@ -79,5 +91,5 @@ public class LectorCsv {
 
             });
         }*/
-    }
+
 }
