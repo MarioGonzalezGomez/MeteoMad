@@ -1,11 +1,12 @@
 package model;
+import lombok.Data;
 
+@Data
 public class Meteo {
-
-    private Temperatura temperatura;
-    private RadiacionSolar radiacionSolar;
-    private Precipitacion precipitacion;
-    private  Humedad humedad;
-    private VelocidadViento velocidadViento;
+    private MedicionMeteo temperatura;
+    private MedicionMeteo radiacionSolar;
+    private MedicionMeteo precipitacion;
+    private MedicionMeteo humedad;
+    private MedicionMeteo velocidadViento;
 
 }
