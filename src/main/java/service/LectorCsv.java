@@ -69,9 +69,12 @@ public class LectorCsv {
 
             }*/
 
+            } else {
+                line = br.readLine();
             }
         }
-        doc.setDocumento(datosCiudad);
+        doc.setDatosCiudad(datosCiudad);
+        doc.mapeoDocumento();
         return doc;
     }
 

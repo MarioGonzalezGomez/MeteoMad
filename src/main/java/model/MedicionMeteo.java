@@ -5,6 +5,7 @@ import java.util.List;
 @Data
 public class MedicionMeteo {
 
+
     private String mediaMensual;  //String porque quiero concatenar con unidad de medida
     private String momentoYmaxima;
     private String getMomentoYminima;
