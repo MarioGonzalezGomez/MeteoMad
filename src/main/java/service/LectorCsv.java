@@ -20,6 +20,7 @@ public class LectorCsv {
         StringTokenizer st;
         List<String> campos = new ArrayList<>();
         List<Double> mediciones = new ArrayList<>();
+        double mediaMediciones;
         List<String> validacion = new ArrayList<>();
         List<LocalDate> fechas = new ArrayList<>();
         List<String> magnitudes = new ArrayList<>();
@@ -50,6 +51,13 @@ public class LectorCsv {
                         validacion.add(campos.get(i));
                     }
                 }
+                double valorAcumulado = 0;
+                for (int i = 0; i < mediciones.size(); i++)
+                    if (validacion.get(i) == "V") {
+                        valorAcumulado = valorAcumulado + mediciones.get(i);
+                    }
+                mediaMediciones = valorAcumulado / mediciones.size();
+
             }
             line = br.readLine();
         }
