@@ -13,18 +13,18 @@ public class LectorCsv {
 
     public void leerCsv(File file, String codCIudad) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
-        StringBuilder line = new StringBuilder(br.readLine());
+        String line = br.readLine();
         StringTokenizer st;
 
         while (line != null) {
-            st = new StringTokenizer(line.toString(), ";");
-            line = null;
-            line.append(br.readLine());
-            while (st.hasMoreTokens() == true) {
-                System.out.print(st.nextToken());
+            if (line.matches(".*;" + codCIudad + ".*")) {
+                st = new StringTokenizer(line, ";");
+
+                while (st.hasMoreTokens()) {
+
+                }
             }
-
-
+            line = br.readLine();
         }
 
 
