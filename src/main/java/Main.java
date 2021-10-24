@@ -10,7 +10,7 @@ public class Main {
         //Este string es temporal para probar el lector
 
         String ciudad = "Leganés";
-        String codCiudad = "28102001";
+        String codCiudad = "28074007";
         LectorCsv lCsv = new LectorCsv();
         //C:\Users\Mario\Desktop\Tocha\MeteoMad\src\main\resources\datos
         String urlMeteo = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_meteo_mes.csv";

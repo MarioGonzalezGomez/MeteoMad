@@ -10,9 +10,6 @@ import java.util.StringTokenizer;
 
 @Data
 public class Documento {
-    List<Documento> medicionesCiudad;
-    Documento medicionesDia;
-    private List<StringTokenizer> datosCiudad;
     private int provincia;
     private int municipio;
     private int estacion;
@@ -23,11 +20,13 @@ public class Documento {
     private int dia;
     private String fecha;
     private int hora;
-    List<String> medicionesHora = new ArrayList<>();// if campo 9 es h01 hora=1;
+    private List<String> medicionesPorhora = new ArrayList<>();// if campo 9 es h01 hora=1;
+    private List<StringTokenizer> datosCiudad;
+    private Documento medicionesDia;
+    private List<Documento> medicionesCiudad = new ArrayList<>();
 
 
-    public void mapeoDocumento() {
-
+    public List<Documento> mapeoDocumento() {
 
         for (StringTokenizer linea : datosCiudad) { //Cada linea es la medicion de una magnitud
             medicionesDia = new Documento();
@@ -43,21 +42,29 @@ public class Documento {
 
 
             while (linea.hasMoreTokens()) {
-                medicionesHora.add(linea.nextToken());
+                String token =linea.nextToken();
 
+                if (!token.contains("V")) { //Poner en un solo if.
+                    if (!token.contains("N")) {
+                        medicionesDia.medicionesPorhora.add(token);
+                        //hay valores N (no validos) Se excluyen de la media.
+                        //Intentar excluir valores String
+                    }
+                }
             }
-
-            medicionesDia.setMedicionesHora(medicionesHora);
-            medicionesCiudad = new ArrayList<>();
             medicionesCiudad.add(medicionesDia);
+        }
 
+        for (Documento medicion : medicionesCiudad
+        ) {
 
-            System.out.println(medicionesDia.toString());
+            System.out.println(medicion.toString());
 
         }
 
-
+        return medicionesCiudad;
     }
+
 
     public String generarFecha() {
         String fecha;
@@ -67,7 +74,20 @@ public class Documento {
     }
 
 
+    @Override
+    public String toString() {
+        return "Documento{" +
+                "provincia=" + provincia +
+                ", municipio=" + municipio +
+                ", estacion=" + estacion +
+                ", magnitud=" + magnitud +
+                ", puntoMuestreo='" + puntoMuestreo + '\'' +
+                ", fecha='" + fecha + '\'' +
+                ", medicionesPorhora=" + medicionesPorhora +
+                '}';
+    }
 }
+
 
 
 
