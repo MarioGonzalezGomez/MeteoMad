@@ -13,7 +13,7 @@ import java.util.List;
 public class EscritorFichero {
     public void escribirFichero(String rutaDirectorio, String ciudad, List<String> datos) throws IOException {
         LocalDate ld = LocalDate.now();
-        Path filePath = Paths.get(rutaDirectorio + File.separator + ciudad + "-" + ld.getDayOfMonth() + "-" + ld.getMonth() + "-" + ld.getYear());
+        Path filePath = Paths.get(rutaDirectorio + File.separator + ciudad + "-" + ld.getDayOfMonth() + "-" + ld.getMonth() + "-" + ld.getYear()+ ".html");
         Files.createFile(filePath);
         //Con esta opción se sobreescribirá el documento si hay otro llamado igual
         Files.write(filePath, datos, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
