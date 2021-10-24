@@ -1,13 +1,12 @@
-import entity.Documento;
-import service.InfoMeteoGenerate;
 import service.LectorCsv;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,13 +19,12 @@ public class Main {
                     "1.nombre de la ciudad de la que se desean obtener los datos " +
                     "2. directorio donde queremos guardar el informe resultante");
         } else {
-            File directorio = new File(args[1]);
-            if (!directorio.exists()) {
-                if (directorio.mkdirs()) {
-                    System.out.println("El directorio ha sido creado con éxito");
-                } else {
-                    System.out.println("Error al crear el directorio");
-                }
+            long initTime = System.currentTimeMillis();
+            Path directorio = Paths.get(args[1]);
+
+            if (Files.notExists(directorio)) {
+                Files.createDirectory(Paths.get(args[1]));
+                System.out.println("El directorio se ha creado con éxito");
             }
 
             String urlMeteo = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_meteo_mes.csv";
@@ -34,24 +32,30 @@ public class Main {
             String urlContaminacion = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_mes.csv";
             File datosContaminacion = new File(urlMeteo);
 
-            String ciudad = "Leganés";
+            String ciudad = args[0];
 
             //implementar metodo asincronia
             ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 
-            //Crear documento y meter resultados en listas independientes.
             LectorCsv lCsv = new LectorCsv();
+            System.out.println("Lector de CSV by Andrea Gómez De Pablo y Mario González Gómez");
+            System.out.println("Informe de datos de " + ciudad);
+            System.out.println("Fecha de inicio de la medición: ");
+            System.out.println("Fecha de fin de la medición: ");
+            System.out.println("Estación/estaciones asociadas: ");
+            //Todos estos sysos son temporales, será la información que irá en el documento generado
             System.out.println("************************   DATOS METEO     *******************************");
             lCsv.leerCsv(datosMeteo, ciudad);
             System.out.println(" ************************   DATOS CONTAMINACION     *******************************");
-            List<Documento> documentoContaminacion = lCsv.leerCsv(datosContaminacion, ciudad);
-            InfoMeteoGenerate informacionMeteorologica = new InfoMeteoGenerate();
-            List<Documento> lista = informacionMeteorologica.generarInformacionMeteo(documentoContaminacion);
+            lCsv.leerCsv(datosContaminacion, ciudad);
+            LocalDate ld = LocalDate.now();
+            Calendar cldr = Calendar.getInstance();
 
+            System.out.println("Informe generado el " + ld.getDayOfMonth() + "/" + ld.getMonth() + "/" + ld.getYear() + " a las "
+                    + cldr.get(Calendar.HOUR_OF_DAY) + ":" + cldr.get(Calendar.MINUTE) + ":" + cldr.get(Calendar.SECOND) +
+                    " en " + (System.currentTimeMillis() - initTime) / 1000 + " segundos.");
         }
-
-
     }
 
 
