@@ -1,5 +1,6 @@
 import entity.Documento;
 import service.LectorCsv;
+import service.Temporal;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,8 @@ import java.util.concurrent.Future;
 public class Main {
     public static void main(String[] args) throws IOException {
         //TODO:Se debe pedir por parámetro la ciudad y el directorio donde se quiere guardar la info (Si no existe, se crea)
+        //Utilizo temporal por ahora pero esta será la clase donde se almacene el mapeo
+        Temporal temp = new Temporal();
 
         String urlMeteo = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_meteo_mes.csv";
         File datosMeteo = new File(urlMeteo);
@@ -21,8 +24,6 @@ public class Main {
         File datosContaminacion = new File(urlMeteo);
 
         String ciudad = "Leganés";
-        String codCiudad = "28074007";
-
 
         //implementar metodo asincronia
         ExecutorService executorService = Executors.newFixedThreadPool(3);
@@ -30,9 +31,9 @@ public class Main {
 
         LectorCsv lCsv = new LectorCsv();
         System.out.println("************************   DATOS METEO     *******************************");
-        lCsv.leerCsv(datosMeteo, codCiudad);
+        lCsv.leerCsv(datosMeteo, ciudad);
         System.out.println(" ************************   DATOS CONTAMINACION     *******************************");
-        lCsv.leerCsv(datosContaminacion, codCiudad);
+        lCsv.leerCsv(datosContaminacion, ciudad);
 
 
     }
