@@ -14,10 +14,9 @@ public class LectorCsv {
     public List<Documento> leerCsv(File file, String ciudad) throws IOException {
         Documento doc = new Documento();
         System.out.println(ciudad);
-        ciudad= (Normalizer.normalize(ciudad, Normalizer.Form.NFD)).toLowerCase().replace("-","").replace(" ","");
+        ciudad = (Normalizer.normalize(ciudad, Normalizer.Form.NFD)).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replace("-", "").replace(" ", "");
         System.out.println(ciudad);
-        String codCiudad= Temporal.CIUDAD_COD.get(ciudad);
-        System.out.println(codCiudad);
+        String codCiudad = Temporal.COD_CIUDAD.get(ciudad);
 
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line = br.readLine();
@@ -25,9 +24,7 @@ public class LectorCsv {
         List<StringTokenizer> datosCiudad = new ArrayList<>();
 
         while (line != null) {
-            //normalizo la línea para casos como las estaciones donde necesitamos
-            // leer la línea con la ciudad ( y no sabemos si esta está escrita correctamente, en mayus, con o sin acentos...
-            if (line.matches(".*;" + codCiudad + ".*") || (Normalizer.normalize(line, Normalizer.Form.NFD)).toLowerCase().replace("-","").replace(" ","").contains(ciudad)) {
+            if (line.matches(".*;" + codCiudad + ".*") || (Normalizer.normalize(line, Normalizer.Form.NFD)).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replace("-", "").replace(" ", "").contains(ciudad)) {
                 st = new StringTokenizer(line, ";");
                 datosCiudad.add(st);
                 line = br.readLine();
