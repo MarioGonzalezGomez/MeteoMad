@@ -3,21 +3,36 @@ import service.LectorCsv;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         //TODO:Se debe pedir por parámetro la ciudad y el directorio donde se quiere guardar la info (Si no existe, se crea)
-        //Este string es temporal para probar el lector
+
+        String urlMeteo = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_meteo_mes.csv";
+        File datosMeteo = new File(urlMeteo);
+        String urlContaminacion = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_mes.csv";
+        File datosContaminacion = new File(urlMeteo);
 
         String ciudad = "Leganés";
         String codCiudad = "28074007";
-        LectorCsv lCsv = new LectorCsv();
-        //C:\Users\Mario\Desktop\Tocha\MeteoMad\src\main\resources\datos
-        String urlMeteo = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_meteo_mes.csv";
-        File datosMeteo = new File(urlMeteo);
 
-       lCsv.leerCsv(datosMeteo, codCiudad);
+
+        //implementar metodo asincronia
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
+
+
+        LectorCsv lCsv = new LectorCsv();
+        System.out.println("************************   DATOS METEO     *******************************");
+         lCsv.leerCsv(datosMeteo, codCiudad);
+        System.out.println(" ************************   DATOS CONTAMINACION     *******************************");
+        lCsv.leerCsv(datosContaminacion, codCiudad);
+
 
     }
+
 
 }

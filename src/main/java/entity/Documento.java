@@ -1,12 +1,11 @@
 package entity;
 
 import lombok.Data;
-import model.Meteo;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.concurrent.Callable;
 
 @Data
 public class Documento {
@@ -42,7 +41,7 @@ public class Documento {
 
 
             while (linea.hasMoreTokens()) {
-                String token =linea.nextToken();
+                String token = linea.nextToken();
 
                 if (!token.contains("V")) { //Poner en un solo if.
                     if (!token.contains("N")) {
@@ -61,8 +60,7 @@ public class Documento {
             System.out.println(medicion.toString());
 
         }
-
-        return medicionesCiudad;
+    return medicionesCiudad;
     }
 
 
@@ -76,17 +74,18 @@ public class Documento {
 
     @Override
     public String toString() {
-        return "Documento{" +
+        return "Mediciones día  " + fecha + "--->" +
                 "provincia=" + provincia +
                 ", municipio=" + municipio +
                 ", estacion=" + estacion +
                 ", magnitud=" + magnitud +
                 ", puntoMuestreo='" + puntoMuestreo + '\'' +
-                ", fecha='" + fecha + '\'' +
                 ", medicionesPorhora=" + medicionesPorhora +
                 '}';
     }
+
 }
+
 
 
 

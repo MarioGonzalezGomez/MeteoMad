@@ -15,8 +15,7 @@ import java.util.stream.Stream;
 
 public class LectorCsv {
 
-
-    public Documento leerCsv(File file, String codCiudad) throws IOException {
+    public List<Documento> leerCsv(File file, String codCiudad) throws IOException {
         Documento doc = new Documento();
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line = br.readLine();
@@ -74,8 +73,7 @@ public class LectorCsv {
             }
         }
         doc.setDatosCiudad(datosCiudad);
-        doc.mapeoDocumento();
-        return doc;
+        return doc.mapeoDocumento();
     }
 
       /* Path path = Paths.get(file.getPath());

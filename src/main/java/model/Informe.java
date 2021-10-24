@@ -7,8 +7,8 @@ public class Informe {
     private long fechaInicioMedicion;
     private Long fechaFinMedicion;
     private String nombreEstacion; //pueden ser más de una, valorar una lista de estaciones
-    private List<Meteo> infoMeteo;
-    private List<Contaminacion> infoContaminacion;
+    private List<MedicionMeteo> infoMeteo;
+    private List<MedicionContaminacion> infoContaminacion;
 
 
 
