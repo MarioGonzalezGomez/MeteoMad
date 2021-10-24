@@ -6,13 +6,15 @@ import java.io.*;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.StringTokenizer;
-
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LectorCsv {
 
     public List<Documento> leerCsv(File file, String ciudad) throws IOException {
-        Documento doc = new Documento();
+
         System.out.println(ciudad);
         ciudad = (Normalizer.normalize(ciudad, Normalizer.Form.NFD)).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replace("-", "").replace(" ", "");
         System.out.println(ciudad);
@@ -32,7 +34,8 @@ public class LectorCsv {
                 line = br.readLine();
             }
         }
-        doc.setDatosCiudad(datosCiudad);
-        return doc.mapeoDocumento();
+
+        DocumentService docService = new DocumentService();
+        return docService.mapeoDocumento(datosCiudad);
     }
 }

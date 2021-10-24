@@ -1,7 +1,13 @@
+import entity.Documento;
+import service.InfoMeteoGenerate;
 import service.LectorCsv;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -34,14 +40,18 @@ public class Main {
             ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 
+            //Crear documento y meter resultados en listas independientes.
             LectorCsv lCsv = new LectorCsv();
             System.out.println("************************   DATOS METEO     *******************************");
             lCsv.leerCsv(datosMeteo, ciudad);
             System.out.println(" ************************   DATOS CONTAMINACION     *******************************");
-            lCsv.leerCsv(datosContaminacion, ciudad);
-
+            List<Documento> documentoContaminacion = lCsv.leerCsv(datosContaminacion, ciudad);
+            InfoMeteoGenerate informacionMeteorologica = new InfoMeteoGenerate();
+            List<Documento> lista = informacionMeteorologica.generarInformacionMeteo(documentoContaminacion);
 
         }
+
+
     }
 
 

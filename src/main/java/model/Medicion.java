@@ -9,4 +9,7 @@ public class Medicion {
     private String momentoYmaxima;
     private String getMomentoYminima;
     private String graficaEvolucionMensual;  // por dias a nivel mensual//tipo??????
+
+
+
 }
