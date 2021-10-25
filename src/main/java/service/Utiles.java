@@ -1,6 +1,7 @@
 package service;
 
 import lombok.Data;
+import model.Medicion;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -8,6 +9,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.awt.*;
 import java.util.HashMap;
+import java.util.List;
 
 @Data
 public class Utiles {
@@ -17,27 +19,34 @@ public class Utiles {
         mapearCiudadCodigo();
     }
 
-    public void hacerGrafica() {
+    public JFreeChart hacerGrafica(List<Medicion> mediciones, int index, String nombreTabla) {
         JFreeChart evolucionTemperatura = null;
         //Para las gráficas de pastel debemos hacer DefaultPieDataset
         DefaultCategoryDataset datos = new DefaultCategoryDataset();
         //En los pie, se utilizaria datos.setValue(nombre de la variable, dato)
         //Valor , Gráfica a la que pertenece, Texto que aparece debajo
-        datos.addValue(27, "Grafica 1", "Uno");
-        datos.addValue(30, "Grafica 1", "Dos");
-        datos.addValue(40, "Grafica 1", "Tres");
+        Medicion medicion = mediciones.get(index);
+        List<Double> diarias = medicion.getMediasMedicionesDiarias();
+        for (int i = 0; i < diarias.size(); i++) {
+            datos.addValue(diarias.get(i), nombreTabla, "" + (i + 1));
+        }
+        //datos.addValue(27, "Grafica 1", "Uno");
+
         //con ChartFactory.create... nos aparecen los distintos tipos de graficas disponibles
         // titulo de grafica, titulo eje X, eje Y, DefaultCategoryDataset, orientacion de la grafica
         //definida como PlotOrientation.VERTICAL u HORIZONTAL, y 3 boolean
         //1: Si se muestra leyenda al pasar raton por encima
         //2: grupo al que pertenece
         //3: para meter una URI
-        evolucionTemperatura = ChartFactory.createBarChart("Grafica de prueba", "Eje X", "Eje Y", datos, PlotOrientation.VERTICAL, true, false, false);
+        evolucionTemperatura = ChartFactory.createBarChart(nombreTabla + " día a día", "Día", "ªC", datos, PlotOrientation.VERTICAL, true, false, false);
         // Los pie se crean similar, pero sus parametros son (nombre grafica, DefaultPieDataset, y los mismos 3 boolenos
         //Esto para poner colorinchis de fondo. También hay un background image
+
         evolucionTemperatura.setBackgroundPaint(new Color(255, 0, 214));
+
         //Cambiar color lineas con setDomainGridlinePaint
         //
+        return evolucionTemperatura;
     }
 
     public static HashMap<String, String> mapearCiudadCodigo() {

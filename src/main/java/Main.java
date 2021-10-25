@@ -35,15 +35,15 @@ public class Main {
                 System.out.println("El directorio se ha creado con éxito");
             }
 */
-            String urlMeteo = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_meteo_mes.csv";
-            File datosMeteo = new File(urlMeteo);
-            String urlContaminacion = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_mes.csv";
-            File datosContaminacion = new File(urlMeteo);
+        String urlMeteo = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_meteo_mes.csv";
+        File datosMeteo = new File(urlMeteo);
+        String urlContaminacion = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_mes.csv";
+        File datosContaminacion = new File(urlMeteo);
 
-            String ciudad = "Leganés";//args[0];
+        String ciudad = "Leganés";//args[0];
 
-            //implementar metodo asincronia
-            ExecutorService executorService = Executors.newFixedThreadPool(3);
+        //implementar metodo asincronia
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 
         LectorCsv lCsv = new LectorCsv();
@@ -65,7 +65,8 @@ public class Main {
 
         //List<Medicion> listaInfoContaminacionGenerada = informacionMeteorologica.generarInformacionMeteo(documentoContaminacion);
 
-        ef.escribirFichero("C:\\Users\\Mario\\Desktop",ciudad,listaInfoMeteoGenerada,2000);
+        String rutaQueTuQuieras = "C:\\Users\\Andrea\\Desktop";
+        ef.escribirFichero(rutaQueTuQuieras, ciudad, listaInfoMeteoGenerada, 2000);
 
         for (Medicion med : listaInfoMeteoGenerada
         ) {
@@ -74,7 +75,7 @@ public class Main {
         }
 
 
-       // }
+        // }
     }
 
 
