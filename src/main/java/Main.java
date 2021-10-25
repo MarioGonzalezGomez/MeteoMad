@@ -1,23 +1,19 @@
-import entity.Documento;
-import model.Medicion;
-import service.DocumentService;
-
-import service.InfoGenerateMeteo;
 import service.LectorCsv;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException, ParseException {
-/*
+    public static void main(String[] args) throws IOException {
+
         if (args.length != 2) {
             System.out.println("Número de parámetros incorrecto: para usar este programa necesitas introducir dos parámetros: " +
                     "1.nombre de la ciudad de la que se desean obtener los datos " +
@@ -30,16 +26,16 @@ public class Main {
                 Files.createDirectory(Paths.get(args[1]));
                 System.out.println("El directorio se ha creado con éxito");
             }
-*/
-        String urlMeteo = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_meteo_mes.csv";
-        File datosMeteo = new File(urlMeteo);
-        String urlContaminacion = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_mes.csv";
-        File datosContaminacion = new File(urlMeteo);
 
-        //String ciudad = args[0];
-        String ciudad = "Leganes";
-        //implementar metodo asincronia
-        ExecutorService executorService = Executors.newFixedThreadPool(3);
+            String urlMeteo = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_meteo_mes.csv";
+            File datosMeteo = new File(urlMeteo);
+            String urlContaminacion = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_mes.csv";
+            File datosContaminacion = new File(urlMeteo);
+
+            String ciudad = args[0];
+
+            //implementar metodo asincronia
+            ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 
         LectorCsv lCsv = new LectorCsv();
@@ -77,14 +73,10 @@ public class Main {
         LocalDate ld = LocalDate.now();
         Calendar cldr = Calendar.getInstance();
 
-
-
-          /*  System.out.println("Informe generado el " + ld.getDayOfMonth() + "/" + ld.getMonth() + "/" + ld.getYear() + " a las "
+            System.out.println("Informe generado el " + ld.getDayOfMonth() + "/" + ld.getMonth() + "/" + ld.getYear() + " a las "
                     + cldr.get(Calendar.HOUR_OF_DAY) + ":" + cldr.get(Calendar.MINUTE) + ":" + cldr.get(Calendar.SECOND) +
                     " en " + (System.currentTimeMillis() - initTime) / 1000 + " segundos.");
         }
-*/
-
     }
 
 
