@@ -39,11 +39,7 @@ public class Main {
 
 
             LectorCsv lCsv = new LectorCsv();
-            System.out.println("Lector de CSV by Andrea Gómez De Pablo y Mario González Gómez");
-            System.out.println("Informe de datos de " + ciudad);
-            System.out.println("Fecha de inicio de la medición: ");
-            System.out.println("Fecha de fin de la medición: ");
-            System.out.println("Estación/estaciones asociadas: ");
+
             //Todos estos sysos son temporales, será la información que irá en el documento generado
             System.out.println("************************   DATOS METEO     *******************************");
             lCsv.leerCsv(datosMeteo, ciudad);
