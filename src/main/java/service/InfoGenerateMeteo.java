@@ -56,30 +56,37 @@ public class InfoGenerateMeteo {
                     //calcularMediaMensual(documento.getMedicionesPorhora());
                     (velocidadviento.getMediasMedicionesDiarias()).add(calcularMediaDiaria(documento.getMedicionesPorhora()));
                     velocidadviento.getMedicionesMensuales().addAll(documento.getMedicionesPorhora());
+                    velocidadviento.setUnidadMedida("m/s");
                     break;
                 case 82:
                     direccionViento.getMediasMedicionesDiarias().add(calcularMediaDiaria(documento.getMedicionesPorhora()));
                     direccionViento.getMedicionesMensuales().addAll(documento.getMedicionesPorhora());
+                    direccionViento.setUnidadMedida("Grd");
                     break;
                 case 83:
                     temperatura.getMediasMedicionesDiarias().add(calcularMediaDiaria(documento.getMedicionesPorhora()));
                     temperatura.getMedicionesMensuales().addAll(documento.getMedicionesPorhora());
+                    temperatura.setUnidadMedida("ºc");
                     break;
                 case 86:
                     humedadRelativa.getMediasMedicionesDiarias().add(calcularMediaDiaria(documento.getMedicionesPorhora()));
                     humedadRelativa.getMedicionesMensuales().addAll(documento.getMedicionesPorhora());
+                    humedadRelativa.setUnidadMedida("%");
                     break;
                 case 87:
                     presionAtmosferica.getMediasMedicionesDiarias().add(calcularMediaDiaria(documento.getMedicionesPorhora()));
                     presionAtmosferica.getMedicionesMensuales().addAll(documento.getMedicionesPorhora());
+                    presionAtmosferica.setUnidadMedida("mbar");
                     break;
                 case 88:
                     radiacionSolar.getMediasMedicionesDiarias().add(calcularMediaDiaria(documento.getMedicionesPorhora()));
                     radiacionSolar.getMedicionesMensuales().addAll(documento.getMedicionesPorhora());
+                    radiacionSolar.setUnidadMedida("W/m2");
                     break;
                 case 89:
                     precipitacion.getMediasMedicionesDiarias().add(calcularMediaDiaria(documento.getMedicionesPorhora()));
                     precipitacion.getMedicionesMensuales().addAll(documento.getMedicionesPorhora());
+                    radiacionSolar.setUnidadMedida("l/m2");
                     break;
             }
         }
@@ -130,7 +137,6 @@ public class InfoGenerateMeteo {
             }
 
         }
-
 
     }
 

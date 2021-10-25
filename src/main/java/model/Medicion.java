@@ -11,11 +11,12 @@ public class Medicion {
     //Meter todo esto en un constructor
     private String nombre;
     List<Double> mediasMedicionesDiarias = new ArrayList<>();
-    private Double mediaMensual;  //String porque quiero concatenar con unidad de medida
+    private Double mediaMensual;
     private String momentoYmaxima;
     private String getMomentoYminima;
     private String graficaEvolucionMensual;
-    List<Double> medicionesMensuales = new ArrayList<>();// por dias a nivel mensual//tipo??????
+    List<Double> medicionesMensuales = new ArrayList<>();
+    private String unidadMedida;
 
 
     public Medicion() {

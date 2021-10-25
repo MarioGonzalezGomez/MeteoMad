@@ -22,7 +22,7 @@ public class DocumentService {
 
         this.datosCiudad = datosCiudad;
         medicionesDia = new Documento();
-        for (StringTokenizer linea : datosCiudad) { //Cada linea es la medicion de una magnitud
+        for (StringTokenizer linea : datosCiudad) {
             medicionesDia = new Documento();
             medicionesDia.setProvincia(Integer.parseInt(linea.nextToken()));
             medicionesDia.setMunicipio(Integer.parseInt(linea.nextToken()));
@@ -35,37 +35,30 @@ public class DocumentService {
             medicionesDia.setFecha(generarFecha());
 
             while (linea.hasMoreTokens()) {
-
                 String token = linea.nextToken();
+
                 if (!token.contains("V")) { //Poner en un solo if.
                     if (!token.contains("N")) {
 
-                            //convierto los valores a Double para poder operar con ellos.
-                            NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
-                            double number = nf.parse(token).doubleValue();
-                            medicionesDia.getMedicionesPorhora().add(number);
 
+                        //convierto los valores a Double para poder operar con ellos.
+                        NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
+                        double number = nf.parse(token).doubleValue();
+                        medicionesDia.getMedicionesPorhora().add(number);
                     }
                 }
-                if(token.contains("")){
 
-                    medicionesDia.getMedicionesConValidaciones().add(token);
-                }
-                else {
-                    medicionesDia.getMedicionesConValidaciones().add(token);
-                }
-
-
+                medicionesDia.getMedicionesConValidaciones().add(token);
             }
+
             medicionesCiudad.add(medicionesDia);
             //Double media= medicionesDia.generarMediaDiaria();
         }
         return medicionesCiudad;
-
     }
 
 
-    public void printDocumento(List<Documento>listaDocu){
+    public void printDocumento(List<Documento> listaDocu) {
 
         for (Documento medicion : listaDocu
         ) {
