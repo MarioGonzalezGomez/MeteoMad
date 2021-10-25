@@ -40,7 +40,7 @@ public class Main {
             String urlContaminacion = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_mes.csv";
             File datosContaminacion = new File(urlMeteo);
 
-            String ciudad = "leganes";//args[0];
+            String ciudad = "Leganés";//args[0];
 
             //implementar metodo asincronia
             ExecutorService executorService = Executors.newFixedThreadPool(3);

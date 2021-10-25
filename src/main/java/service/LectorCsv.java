@@ -14,7 +14,7 @@ public class LectorCsv {
 
     public List<Documento> leerCsv(File file, String ciudad) throws IOException, ParseException {
 
-       // System.out.println(ciudad);
+        // System.out.println(ciudad);
         ciudad = (Normalizer.normalize(ciudad, Normalizer.Form.NFD)).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replace("-", "").replace(" ", "");
         //System.out.println(ciudad);
         String codCiudad = Utiles.COD_CIUDAD.get(ciudad);
@@ -26,6 +26,7 @@ public class LectorCsv {
 
         while (line != null) {
             if (line.matches(".*;" + codCiudad + ".*") || (Normalizer.normalize(line, Normalizer.Form.NFD)).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replace("-", "").replace(" ", "").contains(ciudad)) {
+                line.replaceAll(";;", ";null;");
                 st = new StringTokenizer(line, ";");
                 datosCiudad.add(st);
                 line = br.readLine();
