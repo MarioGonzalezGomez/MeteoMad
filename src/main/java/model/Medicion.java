@@ -14,7 +14,8 @@ public class Medicion {
     private Double mediaMensual;  //String porque quiero concatenar con unidad de medida
     private String momentoYmaxima;
     private String getMomentoYminima;
-    private String graficaEvolucionMensual;  // por dias a nivel mensual//tipo??????
+    private String graficaEvolucionMensual;
+    List<Double> medicionesMensuales = new ArrayList<>();// por dias a nivel mensual//tipo??????
 
 
     public Medicion() {

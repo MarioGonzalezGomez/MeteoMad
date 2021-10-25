@@ -4,7 +4,6 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 
 @Data
@@ -20,7 +19,7 @@ public class Documento {
     private String fecha;
     private int hora;
     private List<Double> medicionesPorhora = new ArrayList<>();// if campo 9 es h01 hora=1;
-
+    private List<String> medicionesConValidaciones = new ArrayList<>();
 
 
     @Override

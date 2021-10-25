@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+//CLASE QUE MAPEA EL CSV A OBJETOS.
 public class DocumentService {
 
     private List<StringTokenizer> datosCiudad;
@@ -39,12 +40,22 @@ public class DocumentService {
                 if (!token.contains("V")) { //Poner en un solo if.
                     if (!token.contains("N")) {
 
-                        //convierto los valores a Double para poder operar con ellos.
-                        NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
-                        double number = nf.parse(token).doubleValue();
-                       medicionesDia.getMedicionesPorhora().add(number);
+                            //convierto los valores a Double para poder operar con ellos.
+                            NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
+                            double number = nf.parse(token).doubleValue();
+                            medicionesDia.getMedicionesPorhora().add(number);
+
                     }
                 }
+                if(token.contains("")){
+
+                    medicionesDia.getMedicionesConValidaciones().add(token);
+                }
+                else {
+                    medicionesDia.getMedicionesConValidaciones().add(token);
+                }
+
+
             }
             medicionesCiudad.add(medicionesDia);
             //Double media= medicionesDia.generarMediaDiaria();
@@ -52,6 +63,7 @@ public class DocumentService {
         return medicionesCiudad;
 
     }
+
 
     public void printDocumento(List<Documento>listaDocu){
 
