@@ -2,8 +2,11 @@ package service;
 
 import entity.Documento;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 public class DocumentService {
@@ -14,7 +17,7 @@ public class DocumentService {
     private Documento miDocumento;
 
 
-    public List<Documento> mapeoDocumento(List<StringTokenizer> datosCiudad) {
+    public List<Documento> mapeoDocumento(List<StringTokenizer> datosCiudad) throws ParseException {
 
         this.datosCiudad = datosCiudad;
         medicionesDia = new Documento();
@@ -31,26 +34,31 @@ public class DocumentService {
             medicionesDia.setFecha(generarFecha());
 
             while (linea.hasMoreTokens()) {
+
                 String token = linea.nextToken();
                 if (!token.contains("V")) { //Poner en un solo if.
                     if (!token.contains("N")) {
-                        medicionesDia.getMedicionesPorhora().add(token);
 
+                        //convierto los valores a Double para poder operar con ellos.
+                        NumberFormat nf = NumberFormat.getInstance(Locale.GERMAN);
+                        double number = nf.parse(token).doubleValue();
+                       medicionesDia.getMedicionesPorhora().add(number);
                     }
                 }
             }
             medicionesCiudad.add(medicionesDia);
             //Double media= medicionesDia.generarMediaDiaria();
         }
-        for (Documento medicion : medicionesCiudad
+        return medicionesCiudad;
+
+    }
+
+    public void printDocumento(List<Documento>listaDocu){
+
+        for (Documento medicion : listaDocu
         ) {
             System.out.println(medicion.toString());
         }
-
-        InfoMeteoGenerate informeteo = new InfoMeteoGenerate();
-        informeteo.generarInformacionMeteo(medicionesCiudad);
-        return medicionesCiudad;
-
     }
 
     public String generarFecha() {

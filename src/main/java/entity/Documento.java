@@ -19,7 +19,7 @@ public class Documento {
     private int dia;
     private String fecha;
     private int hora;
-    private List<String> medicionesPorhora = new ArrayList<>();// if campo 9 es h01 hora=1;
+    private List<Double> medicionesPorhora = new ArrayList<>();// if campo 9 es h01 hora=1;
 
 
 

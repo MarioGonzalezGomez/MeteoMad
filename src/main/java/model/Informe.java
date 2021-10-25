@@ -1,5 +1,7 @@
 package model;
 
+
+
 import java.util.List;
 
 public class Informe {
@@ -11,5 +13,6 @@ public class Informe {
     private List<MedicionContaminacion> infoContaminacion;
 
 
+   // InfoGenerate generaInforme = new InfoGenerate();
 
 }
