@@ -65,7 +65,7 @@ public class Main {
 
         //List<Medicion> listaInfoContaminacionGenerada = informacionMeteorologica.generarInformacionMeteo(documentoContaminacion);
 
-        String rutaQueTuQuieras = "C:\\Users\\Andrea\\Desktop";
+        String rutaQueTuQuieras = "C:\\Users\\Mario\\Desktop";
         ef.escribirFichero(rutaQueTuQuieras, ciudad, listaInfoMeteoGenerada, 2000);
 
         for (Medicion med : listaInfoMeteoGenerada

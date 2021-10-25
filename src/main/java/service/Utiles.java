@@ -27,9 +27,13 @@ public class Utiles {
         //Valor , Gráfica a la que pertenece, Texto que aparece debajo
         Medicion medicion = mediciones.get(index);
         List<Double> diarias = medicion.getMediasMedicionesDiarias();
+        double acumulado = 0.0;
         for (int i = 0; i < diarias.size(); i++) {
             datos.addValue(diarias.get(i), nombreTabla, "" + (i + 1));
+            acumulado = acumulado + diarias.get(i);
         }
+
+        //Ejemplo
         //datos.addValue(27, "Grafica 1", "Uno");
 
         //con ChartFactory.create... nos aparecen los distintos tipos de graficas disponibles
@@ -38,11 +42,20 @@ public class Utiles {
         //1: Si se muestra leyenda al pasar raton por encima
         //2: grupo al que pertenece
         //3: para meter una URI
-        evolucionTemperatura = ChartFactory.createBarChart(nombreTabla + " día a día", "Día", "ªC", datos, PlotOrientation.VERTICAL, true, false, false);
+        if (index == 2) {
+            evolucionTemperatura = ChartFactory.createLineChart(nombreTabla + " día a día", "Día del mes", "ºC", datos, PlotOrientation.VERTICAL, true, false, false);
+        }
+        if (index == 5) {
+            evolucionTemperatura = ChartFactory.createBarChart(nombreTabla + " día a día", "Día del mes", "ºC", datos, PlotOrientation.VERTICAL, true, false, false);
+        }
+        if (index == 3) {
+            evolucionTemperatura = ChartFactory.createAreaChart(nombreTabla + " día a día", "Día del mes", "ºC", datos, PlotOrientation.VERTICAL, true, false, false);
+        }
+
         // Los pie se crean similar, pero sus parametros son (nombre grafica, DefaultPieDataset, y los mismos 3 boolenos
         //Esto para poner colorinchis de fondo. También hay un background image
 
-        evolucionTemperatura.setBackgroundPaint(new Color(255, 0, 214));
+        evolucionTemperatura.setBackgroundPaint(new Color(250, 6, 34, 48));
 
         //Cambiar color lineas con setDomainGridlinePaint
         //
