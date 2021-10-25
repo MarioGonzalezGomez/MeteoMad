@@ -35,6 +35,10 @@ public class EscritorFichero {
         File graficoHumedad = new File(System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "graficoHumedad");
         ChartUtils.saveChartAsPNG(graficoHumedad, graficoHum, 600, 400);
 
+        JFreeChart graficoViento = util.hacerGrafica(datos, 0, "Humedad relativa");
+        File graficoVelocidadCiento = new File(System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "graficoViento");
+        ChartUtils.saveChartAsPNG(graficoVelocidadCiento, graficoViento, 600, 400);
+
         //Con esta opción se sobreescribirá el documento si hay otro llamado igual
         // Files.write(filePath, datos, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 
@@ -47,7 +51,7 @@ public class EscritorFichero {
         sb.append("<h4>RADIACIÓN SOLAR</h4> <ul><li>Radiación solar media mensual: " + datos.get(5).getMediaMensual() + "</li> <li>Momento y radiación máxima: </li> <li>Momento y radiación mínima:</li> </ul> <img src=\"" + System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "graficoSolar\"></br>");
         sb.append("<h4>PRECIPITACIÓN</h4> <ul><li>Precipitación media mensual: " + datos.get(6).getMediaMensual() + "</li> <li>Lista de días que ha llovido y precipitación de cada día: </li></ul>");
         sb.append("<h4>HUMEDAD</h4> <ul><li>Humedad relativa media mensual: " + datos.get(3).getMediaMensual() + "</li> <li>Momento y humedad máxima: </li> <li>Momento y humedad mínima :</li></ul> <img src=\"" + System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "graficoHumedad\"></br>");
-        sb.append("<h4>VELOCIDAD DEL VIENTO</h4> <ul><li>Velocidad media del viento mensual: " + datos.get(0).getMediaMensual() + "</li> <li>Momento y velocidad máxima: </li> <li>Momento y velocidad mínima :</li></ul>");
+        sb.append("<h4>VELOCIDAD DEL VIENTO</h4> <ul><li>Velocidad media del viento mensual: " + datos.get(0).getMediaMensual() + "</li> <li>Momento y velocidad máxima: </li> <li>Momento y velocidad mínima :</li></ul> <img src=\"" +System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "graficoViento\"></br>");
         sb.append("<p><i>Informe generado el " + ld.getDayOfMonth() + "/" + ld.getMonth() + "/" + ld.getYear() + " a las " + cldr.get(Calendar.HOUR_OF_DAY)
                 + ":" + cldr.get(Calendar.MINUTE) + ":" + cldr.get(Calendar.SECOND)
                 + " en " + (System.currentTimeMillis() - initTime) / 1000 + " segundos.</p></i>");

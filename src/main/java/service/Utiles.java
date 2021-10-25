@@ -46,10 +46,12 @@ public class Utiles {
             evolucionTemperatura = ChartFactory.createLineChart(nombreTabla + " día a día", "Día del mes", "ºC", datos, PlotOrientation.VERTICAL, true, false, false);
         }
         if (index == 5) {
-            evolucionTemperatura = ChartFactory.createBarChart(nombreTabla + " día a día", "Día del mes", "ºC", datos, PlotOrientation.VERTICAL, true, false, false);
+            evolucionTemperatura = ChartFactory.createBarChart(nombreTabla + " día a día", "Día del mes", "W/m2", datos, PlotOrientation.VERTICAL, true, false, false);
         }
         if (index == 3) {
-            evolucionTemperatura = ChartFactory.createAreaChart(nombreTabla + " día a día", "Día del mes", "ºC", datos, PlotOrientation.VERTICAL, true, false, false);
+            evolucionTemperatura = ChartFactory.createAreaChart(nombreTabla + " día a día", "Día del mes", "%", datos, PlotOrientation.VERTICAL, true, false, false);
+        }if(index ==0){
+            evolucionTemperatura = ChartFactory.createBarChart(nombreTabla + " día a día", "Día del mes", "m/s", datos, PlotOrientation.HORIZONTAL, true, false, false);
         }
 
         // Los pie se crean similar, pero sus parametros son (nombre grafica, DefaultPieDataset, y los mismos 3 boolenos
