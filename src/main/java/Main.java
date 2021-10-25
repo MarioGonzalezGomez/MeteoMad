@@ -73,6 +73,7 @@ public class Main {
             System.out.println(med.toString());
 
         }
+        System.out.println("Cambio");
 
 
         // }
