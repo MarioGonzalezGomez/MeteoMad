@@ -1,3 +1,7 @@
+import entity.Documento;
+import model.Medicion;
+import service.DocumentService;
+import service.InfoGenerateMeteo;
 import service.LectorCsv;
 
 import java.io.File;
@@ -5,14 +9,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
 
         if (args.length != 2) {
             System.out.println("Número de parámetros incorrecto: para usar este programa necesitas introducir dos parámetros: " +
