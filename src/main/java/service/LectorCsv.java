@@ -17,7 +17,7 @@ public class LectorCsv {
        // System.out.println(ciudad);
         ciudad = (Normalizer.normalize(ciudad, Normalizer.Form.NFD)).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replace("-", "").replace(" ", "");
         //System.out.println(ciudad);
-        String codCiudad = Temporal.COD_CIUDAD.get(ciudad);
+        String codCiudad = Utiles.COD_CIUDAD.get(ciudad);
 
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line = br.readLine();

@@ -1,6 +1,7 @@
 import entity.Documento;
 import model.Medicion;
 import service.DocumentService;
+import service.EscritorFichero;
 import service.InfoGenerateMeteo;
 import service.LectorCsv;
 
@@ -19,6 +20,7 @@ import java.util.concurrent.Executors;
 
 public class Main {
     public static void main(String[] args) throws IOException, ParseException {
+        EscritorFichero ef = new EscritorFichero();
 /*
         if (args.length != 2) {
             System.out.println("Número de parámetros incorrecto: para usar este programa necesitas introducir dos parámetros: " +
@@ -45,20 +47,14 @@ public class Main {
 
 
         LectorCsv lCsv = new LectorCsv();
-        System.out.println("Lector de CSV by Andrea Gómez De Pablo y Mario González Gómez");
-        //Meter en clase generarInforme creada más adelante.
-        System.out.println("Informe de datos de " + ciudad);
-        System.out.println("Fecha de inicio de la medición: ");
-        System.out.println("Fecha de fin de la medición: ");
-        System.out.println("Estación/estaciones asociadas: ");
-
         //Todos estos sysos son temporales, será la información que irá en el documento generado
 
         DocumentService service = new DocumentService();
         System.out.println("************************   DATOS CONTAMINACION     *******************************");
         List<Documento> documentoContaminacion = lCsv.leerCsv(datosContaminacion, ciudad);
         service.printDocumento(documentoContaminacion);
-        System.out.println(" ************************   DATOS METEO   *******************************");
+
+        //System.out.println(" ************************   DATOS METEO   *******************************");
         List<Documento> documentoMeteo = lCsv.leerCsv(datosMeteo, ciudad);
         service.printDocumento(documentoMeteo);
 
@@ -66,9 +62,10 @@ public class Main {
         InfoGenerateMeteo informacionMeteorologica = new InfoGenerateMeteo();
         // InfoGenerateConta informacionContaminacion = new InfoGenerateConta();
         List<Medicion> listaInfoMeteoGenerada = informacionMeteorologica.generarInformacionMeteo(documentoContaminacion);
+
         //List<Medicion> listaInfoContaminacionGenerada = informacionMeteorologica.generarInformacionMeteo(documentoContaminacion);
 
-
+        ef.escribirFichero("C:\\Users\\Mario\\Desktop",ciudad,listaInfoMeteoGenerada,2000);
 
         for (Medicion med : listaInfoMeteoGenerada
         ) {
@@ -76,16 +73,6 @@ public class Main {
 
         }
 
-
-        LocalDate ld = LocalDate.now();
-        Calendar cldr = Calendar.getInstance();
-
-           /* System.out.println("Informe generado el " + ld.getDayOfMonth() + "/" + ld.getMonth() + "/" + ld.getYear() + " a las "
-                    + cldr.get(Calendar.HOUR_OF_DAY) + ":" + cldr.get(Calendar.MINUTE) + ":" + cldr.get(Calendar.SECOND) +
-                    " en " + (System.currentTimeMillis() - initTime) / 1000 + " segundos.");
-
-
-                    */
 
        // }
     }

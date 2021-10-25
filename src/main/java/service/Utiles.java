@@ -10,10 +10,10 @@ import java.awt.*;
 import java.util.HashMap;
 
 @Data
-public class Temporal {
+public class Utiles {
     final static HashMap<String, String> COD_CIUDAD = mapearCiudadCodigo();
 
-    public Temporal() {
+    public Utiles() {
         mapearCiudadCodigo();
     }
 
