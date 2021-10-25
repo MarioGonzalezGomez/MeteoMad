@@ -28,6 +28,7 @@ public class LectorCsv {
             if (line.matches(".*;" + codCiudad + ".*") || (Normalizer.normalize(line, Normalizer.Form.NFD)).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replace("-", "").replace(" ", "").contains(ciudad)) {
                 line.replaceAll(";;", ";null;");
                 st = new StringTokenizer(line, ";");
+
                 datosCiudad.add(st);
                 line = br.readLine();
             } else {
