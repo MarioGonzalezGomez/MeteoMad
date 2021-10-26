@@ -21,40 +21,38 @@ import java.util.concurrent.Executors;
 public class Main {
     public static void main(String[] args) throws IOException, ParseException {
         EscritorFichero ef = new EscritorFichero();
-/*
+        String rutaSeleccionada;
+
         if (args.length != 2) {
-            System.out.println("N˙mero de par·metros incorrecto: para usar este programa necesitas introducir dos par·metros: " +
+            System.out.println("N√∫mero de par√°metros incorrecto: para usar este programa necesitas introducir dos par√°metros: " +
                     "1.nombre de la ciudad de la que se desean obtener los datos " +
                     "2. directorio donde queremos guardar el informe resultante");
         } else {
             long initTime = System.currentTimeMillis();
             Path directorio = Paths.get(args[1]);
-
+            rutaSeleccionada= args[1];
             if (Files.notExists(directorio)) {
                 Files.createDirectory(Paths.get(args[1]));
-                System.out.println("El directorio se ha creado con Èxito");
+                System.out.println("El directorio se ha creado con √©xito");
             }
-*/
+
         String urlMeteo = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_meteo_mes.csv";
         File datosMeteo = new File(urlMeteo);
         String urlContaminacion = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "datos" + File.separator + "calidad_aire_datos_mes.csv";
         File datosContaminacion = new File(urlMeteo);
 
-        String ciudad = "LeganÈs";//args[0];
+        String ciudad = args[0];
 
         //implementar metodo asincronia
-        ExecutorService executorService = Executors.newFixedThreadPool(3);
+       // ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 
         LectorCsv lCsv = new LectorCsv();
-        //Todos estos sysos son temporales, ser· la informaciÛn que ir· en el documento generado
+        //Todos estos sysos son temporales, ser√° la informaci√≥n que ir√° en el documento generado
 
         DocumentService service = new DocumentService();
-        System.out.println("************************   DATOS CONTAMINACION     *******************************");
         List<Documento> documentoContaminacion = lCsv.leerCsv(datosContaminacion, ciudad);
         service.printDocumento(documentoContaminacion);
-
-        //System.out.println(" ************************   DATOS METEO   *******************************");
         List<Documento> documentoMeteo = lCsv.leerCsv(datosMeteo, ciudad);
         service.printDocumento(documentoMeteo);
 
@@ -65,18 +63,16 @@ public class Main {
 
         //List<Medicion> listaInfoContaminacionGenerada = informacionMeteorologica.generarInformacionMeteo(documentoContaminacion);
 
-        String rutaQueTuQuieras = "C:\\Users\\Mario\\Desktop";
-        ef.escribirFichero(rutaQueTuQuieras, ciudad, listaInfoMeteoGenerada, 2000);
+        ef.escribirFichero(rutaSeleccionada, ciudad, listaInfoMeteoGenerada, initTime);
 
         for (Medicion med : listaInfoMeteoGenerada
         ) {
             System.out.println(med.toString());
 
         }
-        System.out.println("Cambio");
 
 
-        // }
+       }
     }
 
 
